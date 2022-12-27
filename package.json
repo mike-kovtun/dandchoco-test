@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "cypress": "^10.8.0",
+    "json-server": "^0.17.0"
+  },
+  "name": "priject1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
