@@ -48,11 +48,12 @@ pipeline {
 } */
 
 pipeline {
-  agent {
+  agent any
+  /* {
     docker {
       image 'cypress/base:latest'
     }
-  }
+  } */
 
   stages {
     stage('build and test') {
