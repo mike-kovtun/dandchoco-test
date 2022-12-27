@@ -47,15 +47,15 @@ pipeline {
         }
 
         stage('Testing') {
+
+            environment {
+                CYPRESS_RECORD_KEY = credentials('7d578c01-d51f-4ec9-abcb-31cd9846eb6c')
+                CYPRESS_trashAssetsBeforeRuns = 'false'
+            }
             steps {
-                environment {
-                    CYPRESS_RECORD_KEY = credentials('7d578c01-d51f-4ec9-abcb-31cd9846eb6c')
-                    CYPRESS_trashAssetsBeforeRuns = 'false'
-                    
-                }
-                    bat "npm i"
-                    bat "npx cypress run --browser=${BROWSER} --spec ${SPEC}"
-                    
+                bat "npm i"
+                bat "npx cypress run --browser=${BROWSER} --spec ${SPEC}"
+
             }
             stage('Deploy') {
                 steps {
@@ -63,13 +63,13 @@ pipeline {
                 }
             }
         }
-        }
-        post {
+    }
+    post {
 
-            always {
-                echo 'Stopping local server'
-                sh 'pkill -f http-server'
-            }
+        always {
+            echo 'Stopping local server'
+            sh 'pkill -f http-server'
         }
-    
+    }
+
 }
