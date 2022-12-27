@@ -23,7 +23,6 @@ pipeline {
         choice(name: 'BROWSER', choices: ['chrome'],)
     }
     
-
     /* options {
         ansiColor('xterm')
     } */
