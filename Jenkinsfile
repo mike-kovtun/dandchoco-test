@@ -32,14 +32,28 @@ pipeline {
         
         stage('Build'){
             steps {
-                echo "Building the application"
-            }
+        // there a few default environment variables on Jenkins
+        // on local Jenkins machine (assuming port 8080) see
+        // http://localhost:8080/pipeline-syntax/globals#env
+        echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        sh 'npm ci'
+        sh 'npm run cy:verify'
+      }
         }
-        
+
+        stage('start local server') {
+            steps {
+        sh 'nohup npm run start &'
+      }
+    }
+
         stage('Testing') {
+            environment {
+        CYPRESS_RECORD_KEY = credentials('7d578c01-d51f-4ec9-abcb-31cd9846eb6c')
+        CYPRESS_trashAssetsBeforeRuns = 'false'
             steps {
                 bat "npm i"
-                bat "npx cypress run --browser=${BROWSER} --spec ${SPEC}" //--record --key 7d578c01-d51f-4ec9-abcb-31cd9846eb6c 
+                bat "npx cypress run --browser=${BROWSER} --spec ${SPEC}"
             }
         }
         
@@ -50,17 +64,10 @@ pipeline {
         }
     }
 
-    /* post {
-        always {
-            //The script step takes a block of Scripted Pipeline and executes that in the Declarative Pipeline. 
-            //For most use-cases, the script step should be unnecessary in Declarative Pipelines, but it can provide
-            //a useful "escape hatch." script blocks of non-trivial size and/or complexity should be moved into Shared Libraries instead.
-            script {
-                BUILD_USER = getBuildUser()
-            }
-                      
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/report', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-            deleteDir()
-        }
-    } */
+    post {
+
+    always {
+      echo 'Stopping local server'
+      sh 'pkill -f http-server'
+    }
 }
