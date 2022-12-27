@@ -38,11 +38,11 @@ pipeline {
             }
         }
 
-        stage('start local server') {
+        /* stage('start local server') {
             steps {
                 sh 'nohup npm run start &'
             }
-        }
+        } */
 
         stage('Testing') {
 
