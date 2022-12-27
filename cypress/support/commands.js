@@ -93,7 +93,7 @@ let i = 0
 Cypress.Commands.add('verifyAltTag', (element) => {
   cy.get(element).each(el => { i ++
     //cy.wrap(el).its('attr').should('have.text');
-    cy.get(element).invoke('show').screenshot('img '+ i, {overwrite: false});
+    //cy.get(element).invoke('show').screenshot('img '+ i, {overwrite: false});
        if (el.has('attr', 'alt')) {
         cy.get(el).invoke('attr', 'alt').then((elms) => {
         if (elms.length < 1) {
