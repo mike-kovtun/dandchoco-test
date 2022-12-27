@@ -5,9 +5,9 @@ def COLOR_MAP = [
     'FAILURE': 'danger',
 ]
 
-def getBuildUser() {
+/* def getBuildUser() {
     return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
-}
+} */
 
 
 pipeline {
