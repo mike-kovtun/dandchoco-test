@@ -57,9 +57,9 @@ pipeline {
 
   stages {
     stage('build and test') {
-      environment {
+      /* environment {
         CYPRESS_RECORD_KEY = credentials('7d578c01-d51f-4ec9-abcb-31cd9846eb6c')
-      }
+      } */
 
       steps {
         sh 'npm ci'
