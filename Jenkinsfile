@@ -46,10 +46,10 @@ pipeline {
 
         stage('Testing') {
 
-            environment {
+            /* environment {
                 CYPRESS_RECORD_KEY = credentials('7d578c01-d51f-4ec9-abcb-31cd9846eb6c')
                 CYPRESS_trashAssetsBeforeRuns = 'false'
-            }
+            } */
             steps {
                 bat "npm i"
                 bat "npx cypress run --browser=${BROWSER} --spec ${SPEC}"
