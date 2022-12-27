@@ -39,7 +39,7 @@ pipeline {
         stage('Testing') {
             steps {
                 bat "npm i"
-                bat "npx cypress run--browser ${BROWSER} --spec ${SPEC}" --record --key 7d578c01-d51f-4ec9-abcb-31cd9846eb6c 
+                bat "npx cypress run --browser=${BROWSER} --spec ${SPEC}" //--record --key 7d578c01-d51f-4ec9-abcb-31cd9846eb6c 
             }
         }
         
