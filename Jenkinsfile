@@ -58,7 +58,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                // 
+                echo "Running build"
             }
         }
         stage('Test') { 
@@ -69,7 +69,7 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                // 
+                echo "Deploying"
             }
         }
     }
